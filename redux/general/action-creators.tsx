@@ -48,3 +48,12 @@ export const getSearchBooks = (data?: string) => {
         },
     };
 };
+
+export const getBookmarks = (data?: string) => {
+    return {
+        type: types.GET_BOOKMARKS,
+        payload: {
+            data,
+        },
+    };
+};

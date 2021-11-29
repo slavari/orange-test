@@ -4,21 +4,21 @@ import { NextPage } from 'next';
 import { useDispatch } from 'react-redux';
 
 import { getBookDetails } from '@redux/general/action-creators';
-import Book from '@components/Book/Book';
+import Book from '@components/Book';
 
 interface Props {
     userAgent?: string;
     query?: string;
 }
 
-const BooksDetails: NextPage<Props> = ({ userAgent, query }) => {
+const BooksDetails: NextPage<Props> = ({ query }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
         !!query && dispatch(getBookDetails(query));
     }, []);
 
-    return <Book />;
+    return <Book/>;
 };
 
 BooksDetails.getInitialProps = async ctx => {

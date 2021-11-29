@@ -12,6 +12,7 @@ const initialStates = {
     book: {},
     searchBooks: '',
     searchBooksList: [],
+    favoriteBooksList: [],
     q: EStates,
     // theme: EStates,
 };

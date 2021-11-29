@@ -2,8 +2,12 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const Card: FC = ({ book }) => {
-    const bookInfo = book.volumeInfo;
+interface CardProps {
+    book: {};
+}
+
+const Card: FC<CardProps> = ({ book }) => {
+    const bookInfo = book?.volumeInfo;
 
     const getLimitedSymbol = (item: string) => {
         if (item?.length > 150) {
@@ -14,14 +18,14 @@ const Card: FC = ({ book }) => {
     };
 
     return (
-        <Link href={{ pathname: 'book-details', query: { id: book.id } }}>
-            <CardWrap href={`/book-details?id=${book.id}`}>
+        <Link href={{ pathname: 'book-details', query: { id: book?.id } }}>
+            <CardWrap href={`/book-details?id=${book?.id}`}>
                 <CardTitle>{bookInfo.title}</CardTitle>
                 <CardSubtitle>{bookInfo.subtitle}</CardSubtitle>
                 <CardImg src={bookInfo.imageLinks?.thumbnail} />
                 <CardTextSnippet
                     dangerouslySetInnerHTML={{
-                        __html: getLimitedSymbol(book.searchInfo?.textSnippet),
+                        __html: getLimitedSymbol(book?.searchInfo?.textSnippet),
                     }}
                 />
             </CardWrap>

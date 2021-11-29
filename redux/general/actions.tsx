@@ -27,3 +27,9 @@ export const getTheme = (state: any, { data }: any) => {
 export const getSearchBooks = (state: any, { data }: any) => {
     return update(state, { searchBooks: { $set: data } });
 };
+
+export const getBookmarks = (state: any, { data }: any) => {
+    const idx = state.favoriteBooksList?.indexOf(data)
+    // const list = idx !== -1 ? [...state.favoriteBooksList];
+    return update(state, { favoriteBooksList: { $set: [...state.favoriteBooksList, data] } });
+};

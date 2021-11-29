@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getBookes } from '@redux/general/action-creators';
-import List from '@components/List/List';
+import List from '@components/List';
 
 interface Props {
     userAgent?: string;
