@@ -1,6 +1,6 @@
 import update from 'immutability-helper';
 
-export const getBookes = (
+export const getBooks = (
     state: any,
     { data }: any,
     {
@@ -29,7 +29,35 @@ export const getSearchBooks = (state: any, { data }: any) => {
 };
 
 export const getBookmarks = (state: any, { data }: any) => {
-    const idx = state.favoriteBooksList?.indexOf(data)
-    // const list = idx !== -1 ? [...state.favoriteBooksList];
+    if (typeof data == 'object') {
+        const favoriteBooksIdxList = state.favoriteBooksIdxList;
+        const idx = favoriteBooksIdxList?.indexOf(data);
+
+        if (idx === -1) {
+            return update(state, {
+                favoriteBooksIdxList: { $set: data },
+            });
+        } else {
+            const newData = favoriteBooksIdxList.filter((e: any, EIdx: number) => EIdx !== idx);
+
+            return update(state, { favoriteBooksIdxList: { $set: newData } });
+        }
+    } else {
+        const favoriteBooksIdxList = state.favoriteBooksIdxList;
+        const idx = favoriteBooksIdxList?.indexOf(data);
+
+        if (idx === -1) {
+            return update(state, {
+                favoriteBooksIdxList: { $set: [...favoriteBooksIdxList, data] },
+            });
+        } else {
+            const newData = favoriteBooksIdxList.filter((e: any, EIdx: number) => EIdx !== idx);
+
+            return update(state, { favoriteBooksIdxList: { $set: newData } });
+        }
+    }
+};
+
+export const getBookmarksList = (state: any, { data }: any) => {
     return update(state, { favoriteBooksList: { $set: [...state.favoriteBooksList, data] } });
 };

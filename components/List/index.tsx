@@ -1,36 +1,23 @@
-import React, { FC, useState, useEffect,useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import Card from '@components/Card';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+
+import Card from '@components/Card';
+import Loader from '@components/Loader';
 
 interface ListProps {
     books: [];
 }
 
 const List: FC<ListProps> = ({ books }) => {
-    const [isLoading, setIsLoading] = useState(false);
-
-
-    useEffect(() => {
-        setIsLoading(false)
-
-        let timer1 = setTimeout(() => setIsLoading(true), 500);
-
-        return () => {
-            clearTimeout(timer1);
-          };
-        
-    }, [books]);
-
-    if (!isLoading) return <Loader>Loading...</Loader>;
-
     return (
         <Container>
-            <ListWrap>
-                {books?.map(book => {
-                    return <Card key={book.id} book={book}/>;
-                })}
-            </ListWrap>
+            <Loader dependency={books}>
+                <ListWrap>
+                    {books?.map(book => {
+                        return <Card key={book.id} book={book} />;
+                    })}
+                </ListWrap>
+            </Loader>
         </Container>
     );
 };
@@ -49,7 +36,4 @@ const ListWrap = styled.div`
     flex-direction: row;
     gap: 10px;
     padding: 0rem 0 2rem;
-`;
-const Loader = styled.div`
-    text-align: center;
 `;

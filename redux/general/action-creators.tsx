@@ -2,8 +2,12 @@ import { types } from './action-types';
 
 import { apiPath, apiHost } from '@server/server.config';
 import { EStates } from './reducers';
+import axios from 'axios';
 
-export const getBookes = (params?: any[], forSearch?: boolean | null) => {
+const CancelToken = axios.CancelToken;
+let cancelBooks;
+
+export const getBooks = (params?: any[], forSearch?: boolean | null) => {
     return {
         type: types.GET_BOOKSLIST,
         payload: {
@@ -11,6 +15,7 @@ export const getBookes = (params?: any[], forSearch?: boolean | null) => {
                 url: `${apiHost}${apiPath}`,
                 method: 'GET',
                 params: params || EStates,
+                cancelToken: new CancelToken(c => (cancelBooks = c)),
             },
         },
         meta: {
@@ -54,6 +59,17 @@ export const getBookmarks = (data?: string) => {
         type: types.GET_BOOKMARKS,
         payload: {
             data,
+        },
+    };
+};
+export const getBookmarksList = (slug: string) => {
+    return {
+        type: types.GET_BOOKMARKS_LIST,
+        payload: {
+            request: {
+                url: `${apiHost}${apiPath}/${slug}`,
+                method: 'GET',
+            },
         },
     };
 };

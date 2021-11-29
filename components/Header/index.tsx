@@ -18,8 +18,6 @@ const Header = () => {
     useEffect(() => {
         if (debouncedSearch) {
             dispatch(getSearchBooks(debouncedSearch));
-        } else {
-            dispatch(getSearchBooks(''));
         }
     }, [debouncedSearch]);
 

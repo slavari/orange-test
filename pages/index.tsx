@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getBookes } from '@redux/general/action-creators';
+import { getBooks } from '@redux/general/action-creators';
 import List from '@components/List';
 
 interface Props {
@@ -16,7 +16,7 @@ const IndexPage: NextPage<Props> = ({ userAgent }) => {
 
     useEffect(() => {
         if (!books?.length) {
-            dispatch(getBookes());
+            dispatch(getBooks());
         }
     }, [books]);
 

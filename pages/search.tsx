@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getBookes } from '@redux/general/action-creators';
+import { getBooks } from '@redux/general/action-creators';
 import List from '@components/List';
 
 interface Props {
@@ -11,18 +11,19 @@ interface Props {
 }
 
 const IndexPage: NextPage<Props> = ({ userAgent }) => {
-    const { searchBooksList, searchBooks } = useSelector((state: { GeneralReducer: {} }) => state.GeneralReducer);
+    const { searchBooksList, searchBooks } = useSelector(
+        (state: { GeneralReducer: {} }) => state.GeneralReducer,
+    );
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
         if (searchBooks) {
-            dispatch(getBookes({q : searchBooks},true ));
+            dispatch(getBooks({ q: searchBooks }, true));
         }
     }, [searchBooks]);
 
     // return <div>sads</div>
     return <List books={searchBooksList} />;
-
 };
 
 IndexPage.getInitialProps = async ctx => {
