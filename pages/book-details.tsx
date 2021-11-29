@@ -8,13 +8,14 @@ import Book from '@components/Book/Book';
 
 interface Props {
     userAgent?: string;
+    query?: string;
 }
 
 const BooksDetails: NextPage<Props> = ({ userAgent, query }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getBookDetails(query));
+        !!query && dispatch(getBookDetails(query));
     }, []);
 
     return <Book />;
@@ -23,7 +24,7 @@ const BooksDetails: NextPage<Props> = ({ userAgent, query }) => {
 BooksDetails.getInitialProps = async ctx => {
     const userAgent = ctx.req ? ctx.req.headers['user-agent'] : navigator.userAgent;
 
-    return { userAgent, query: ctx.query.id };
+    return { userAgent, query: ctx.query?.id };
 };
 
 export default BooksDetails;

@@ -2,6 +2,7 @@ import React from 'react';
 import type { AppProps, AppContext } from 'next/app';
 import { wrapper } from '../redux/store';
 import Header from '@components/Header/Header';
+
 // import { ThemeProvider } from 'styled-components';
 // import { useSelector } from 'react-redux';
 

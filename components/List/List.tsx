@@ -3,9 +3,12 @@ import { useSelector } from 'react-redux';
 import Card from '@components/Card/Card';
 import styled from 'styled-components';
 
-const List: FC = () => {
-    const { books } = useSelector((state: { GeneralReducer: {} }) => state.GeneralReducer);
+interface ListProps{
+     books: []
+}
 
+const List: FC<ListProps> = ({books}) => {
+    
     return (
         <Container>
             <ListWrap>

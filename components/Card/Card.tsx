@@ -15,7 +15,7 @@ const Card: FC = ({ book }) => {
 
     return (
         <Link href={{ pathname: 'book-details', query: { id: book.id } }}>
-            <CardWrap>
+            <CardWrap href={`/book-details?id=${book.id}`}>
                 <CardTitle>{bookInfo.title}</CardTitle>
                 <CardSubtitle>{bookInfo.subtitle}</CardSubtitle>
                 <CardImg src={bookInfo.imageLinks?.thumbnail} />
@@ -32,7 +32,9 @@ const Card: FC = ({ book }) => {
 export default Card;
 
 const CardWrap = styled.a`
-    display: block;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-gap: 10px;
     width: calc(25% - 40px);
     background-color: rgba(255, 238, 144, 0.479);
     text-decoration: none;
@@ -41,6 +43,7 @@ const CardWrap = styled.a`
     padding: 15px;
     min-width: 250px;
     text-align: center;
+    cursor: pointer;
 
     @media screen and (max-width: 1240px) {
         width: calc(33.3333% - 30px);
@@ -54,9 +57,19 @@ const CardWrap = styled.a`
         width: 100%;
     }
 `;
-const CardSubtitle = styled.h2``;
-const CardTitle = styled.h1``;
-const CardImg = styled.img`
-    margin: 10px 0;
+const CardSubtitle = styled.h2`
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
 `;
-const CardTextSnippet = styled.div``;
+const CardTitle = styled.h1`
+    font-size: 16px;
+    margin: 0;
+`;
+const CardImg = styled.img`
+    margin: 10px auto;
+    display: block;
+`;
+const CardTextSnippet = styled.div`
+    font-size: 14px;
+`;

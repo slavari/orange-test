@@ -1,6 +1,5 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import Card from '@components/Card/Card';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 

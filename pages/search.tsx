@@ -11,16 +11,18 @@ interface Props {
 }
 
 const IndexPage: NextPage<Props> = ({ userAgent }) => {
-    const { books } = useSelector((state: { GeneralReducer: {} }) => state.GeneralReducer);
+    const { searchBooksList, searchBooks } = useSelector((state: { GeneralReducer: {} }) => state.GeneralReducer);
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
-        if (!books?.length) {
-            dispatch(getBookes());
+        if (searchBooks) {
+            dispatch(getBookes({q : searchBooks},true ));
         }
-    }, [books]);
+    }, [searchBooks]);
 
-    return <List books={books} />;
+    // return <div>sads</div>
+    return <List books={searchBooksList} />;
+
 };
 
 IndexPage.getInitialProps = async ctx => {
