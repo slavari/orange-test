@@ -1,0 +1,33 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@assets": "./assets",
+          "@server": "./server",
+          "@components": "./components",
+          "@styles": "./assets/styles",
+          "@images": "./assets/images",
+          "@helpers": "./utils",
+          "@lib": "./assets/lib",
+          "@ts": "ts",
+          "@redux": "./redux"
+        },
+        "cwd": "babelrc"
+      }
+    ],
+    [
+      "wrap-in-js",
+      {
+        "extensions": ["css$", "scss$"]
+      }
+    ],
+    ["@babel/plugin-proposal-optional-chaining"],
+    ["babel-plugin-styled-components"],
+    ["@emotion"]
+  ],
+  "presets": ["next/babel", "@babel/preset-typescript"],
+  "ignore": []
+}
